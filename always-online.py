@@ -17,7 +17,7 @@
 
 # meta developer: @qq_shark && @SharkHostBot
 
-__version__ = (1, 0, 2)
+__version__ = (1, 0, 1)
 
 import asyncio
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
