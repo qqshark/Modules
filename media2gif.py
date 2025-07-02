@@ -49,7 +49,7 @@ class media2gifMod(loader.Module):
         ru_doc="[ответ на фото или видео] — превращает фото или видео в GIF.",
         en_doc="[reply to photo or video] — converts photo or video to GIF.",
     )
-    async def pic2gif(self, message):
+    async def media2gif(self, message):
         reply = await message.get_reply_message()
         if not reply or not (reply.photo or reply.video):
             await utils.answer(message, self.strings("not_media", message))
