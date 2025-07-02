@@ -26,7 +26,7 @@ from .. import loader, utils
 
 @loader.tds
 class AlwaysOnline(loader.Module):
-    """Always Online - модуль вечного онлайна."""
+    """Always Online - модуль вечного онлайна (by @qq_shark)."""
 
     strings = {
         "name": "Always Online",
@@ -95,7 +95,11 @@ class AlwaysOnline(loader.Module):
 
     @loader.command()
     async def onlinecmd(self, message):
-        """- переключатель режима онлайн"""
+        """
+        ▫️ .online - переключатель режима онлайн
+
+        Включает или выключает режим "вечного онлайна" (чтение сообщений в специальном чате, чтобы Telegram всегда отображал вас онлайн).
+        """
         self.online_mode = not self.online_mode
         self.db.set("AlwaysOnline", "online_mode", self.online_mode)
         if self.online_mode:
