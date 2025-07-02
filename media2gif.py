@@ -27,7 +27,7 @@ class media2gifMod(loader.Module):
     """Конвертор фото/видео в гиф (by @qq_shark)."""
 
     strings = {
-        "name": "PicAndVideo2Gif",
+        "name": "media2gif",
         "conversion_error": "❌ Ошибка при преобразовании в GIF.",
         "not_media": "⚠️ Ответьте на фото или видео!",
         "stage_downloading": "⏬ Загружаю файл...",
