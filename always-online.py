@@ -17,7 +17,7 @@
 
 # meta developer: @qq_shark && @SharkHostBot
 
-__version__ = (1, 0, 1)
+__version__ = (1, 0, 2)
 
 import asyncio
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
@@ -95,11 +95,7 @@ class AlwaysOnline(loader.Module):
 
     @loader.command()
     async def onlinecmd(self, message):
-        """
-        ▫️ .online - переключатель режима онлайн
-
-        Включает или выключает режим "вечного онлайна" (чтение сообщений в специальном чате, чтобы Telegram всегда отображал вас онлайн).
-        """
+        """- переключатель режима онлайн"""
         self.online_mode = not self.online_mode
         self.db.set("AlwaysOnline", "online_mode", self.online_mode)
         if self.online_mode:
