@@ -1,5 +1,5 @@
 # ©️ qq_shark, 2025
-# 🌐 https://github.com/qqshark/always-online
+# 🌐 https://github.com/qqshark/Modules/blob/main/always-online.py
 # Licensed under GNU AGPL v3.0
 # 
 # This program is free software: you can redistribute it and/or modify
