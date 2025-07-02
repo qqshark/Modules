@@ -26,6 +26,8 @@ from .. import loader, utils
 
 @loader.tds
 class AlwaysOnline(loader.Module):
+    """Always Online - модуль вечного онлайна."""
+
     strings = {
         "name": "Always Online",
         "reqj": "This is a chat for always online mode by reading messages!",
@@ -81,6 +83,7 @@ class AlwaysOnline(loader.Module):
 
     @loader.watcher()
     async def watcher(self, message):
+        """Автоматически читает сообщения в целевом чате когда режим включен"""
         try:
             if self.online_mode and message.chat_id == self.target_chat_id:
                 await self.client.send_read_acknowledge(
@@ -92,6 +95,7 @@ class AlwaysOnline(loader.Module):
 
     @loader.command()
     async def onlinecmd(self, message):
+        """- переключатель режима онлайн"""
         self.online_mode = not self.online_mode
         self.db.set("AlwaysOnline", "online_mode", self.online_mode)
         if self.online_mode:
