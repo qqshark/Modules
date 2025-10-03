@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-# meta developer: @qq_shark && @SharkHostBot
+# meta developer: @qq_shark
 
 __version__ = (1, 0, 1)
 
