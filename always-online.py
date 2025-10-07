@@ -1,6 +1,6 @@
 # ©️ qq_shark, 2025
 # 🌐 https://github.com/qqshark/Modules/blob/main/always-online.py
-# Licеnsed under GNU AGPL v3.0
+# Licensed under GNU AGPL v3.0
 # 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -17,9 +17,8 @@
 
 # meta developer: @qq_shark
 
-__version__ = (1, 3, 0)
+__version__ = (1, 3, 2)
 
-import asyncio
 from telethon.tl.functions.account import UpdateStatusRequest
 from .. import loader, utils
 
@@ -53,22 +52,18 @@ class AlwaysOnline(loader.Module):
 
     def __init__(self):
         self.online_mode = False
-        self._task = None
 
     async def client_ready(self, client, db):
         self.db = db
         self.client = client
         self.online_mode = self.db.get("AlwaysOnline", "online_mode", False)
-        if self.online_mode:
-            self._task = asyncio.create_task(self._keep_online_loop())
 
-    async def _keep_online_loop(self):
-        while True:
-            try:
-                await self.client(UpdateStatusRequest(offline=False))
-            except Exception:
-                pass
-            await asyncio.sleep(3)
+    @loader.loop(interval=3, condition=lambda self: self.online_mode) # thnx @xdesai за идею
+    async def keep_online_loop(self):
+        try:
+            await self.client(UpdateStatusRequest(offline=False))
+        except Exception:
+            pass
 
     @loader.command()
     async def onlinecmd(self, message):
@@ -77,10 +72,6 @@ class AlwaysOnline(loader.Module):
         self.db.set("AlwaysOnline", "online_mode", self.online_mode)
         
         if self.online_mode:
-            if not self._task or self._task.done():
-                self._task = asyncio.create_task(self._keep_online_loop())
             await utils.answer(message, self.strings["online_on"])
         else:
-            if self._task and not self._task.done():
-                self._task.cancel()
-            await utils.answer(message, self.strings["online_off"]) 
+            await utils.answer(message, self.strings["online_off"])
