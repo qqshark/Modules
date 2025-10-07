@@ -58,8 +58,11 @@ class AlwaysOnline(loader.Module):
         self.client = client
         self.online_mode = self.db.get("AlwaysOnline", "online_mode", False)
 
-    @loader.loop(interval=3, condition=lambda self: self.online_mode) # thnx @xdesai за идею
+    @loader.loop(interval=3)
     async def keep_online_loop(self):
+        if not self.online_mode:
+            return
+            
         try:
             await self.client(UpdateStatusRequest(offline=False))
         except Exception:
