@@ -17,7 +17,7 @@
 
 # meta developer: @qq_shark
 
-__version__ = (1, 3, 2)
+__version__ = (1, 3, 1)
 
 from telethon.tl.functions.account import UpdateStatusRequest
 from .. import loader, utils
