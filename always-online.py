@@ -1,5 +1,5 @@
 # ©️ qq_shark, 2025
-# 🌐 https://github.com/qqshark/Modules/blob/main/always-online.py
+# 🌐 [https://github.com/qqshark/Modules/blob/main/always-online.py](https://github.com/qqshark/Modules/blob/main/always-online.py)
 # Licensed under GNU AGPL v3.0
 # 
 # This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 # meta developer: @qq_shark
 
-__version__ = (1, 3, 1)
+__version__ = (1, 3, 3)
 
 from telethon.tl.functions.account import UpdateStatusRequest
 from .. import loader, utils
@@ -58,13 +58,12 @@ class AlwaysOnline(loader.Module):
         self.client = client
         self.online_mode = self.db.get("AlwaysOnline", "online_mode", False)
 
-    @loader.loop(interval=3)
+    @loader.loop(interval=3, autostart=True) # ещё раз thnx @xdesai за идею 
     async def keep_online_loop(self):
         if not self.online_mode:
             return
-            
         try:
-            await self.client(UpdateStatusRequest(offline=False))
+            await self.client(UpdateStatusRequest(offline=False)) # ебать я пробка ретурн запихнул туды сука ебаная (пасхалко типа)
         except Exception:
             pass
 
