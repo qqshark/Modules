@@ -17,7 +17,7 @@
 
 # meta developer: @qq_shark
 
-__version__ = (1, 3, 3)
+__version__ = (1, 3, 4)
 
 from telethon.tl.functions.account import UpdateStatusRequest
 from .. import loader, utils
@@ -64,8 +64,8 @@ class AlwaysOnline(loader.Module):
             return
         try:
             await self.client(UpdateStatusRequest(offline=False)) # ебать я пробка ретурн запихнул туды сука ебаная (пасхалко типа)
-        except Exception:
-            pass
+        except Exception as e:
+            logger.error(e)
 
     @loader.command()
     async def onlinecmd(self, message):
@@ -77,3 +77,6 @@ class AlwaysOnline(loader.Module):
             await utils.answer(message, self.strings["online_on"])
         else:
             await utils.answer(message, self.strings["online_off"])
+
+# хочу вскрыться нахуй 💋
+# ыыы где шаркхост = иди нахуй
